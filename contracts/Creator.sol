@@ -28,4 +28,7 @@ contract Creator is
         contents.push(Content(msg.sender));
         _mint(msg.sender, id); 
     }
+    function getPrice() public view returns(uint){
+        return price;
+    }
 }
