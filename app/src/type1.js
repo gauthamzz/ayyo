@@ -2,6 +2,17 @@
 import Web3 from "web3";
 import creatorCoinArtifact from "../../build/contracts/Creator.json";
 
+function getMeta(metaName) {
+  const metas = document.getElementsByTagName('meta');
+  for (let i = 0; i < metas.length; i++) {
+    if (metas[i].getAttribute('name') === metaName) {
+      return metas[i].getAttribute('content');
+    }
+  }
+
+  return '';
+}
+
 function hide(elements) {
   elements = elements.length ? elements : [elements];
   for (var index = 0; index < elements.length; index++) {
@@ -83,10 +94,16 @@ const App = {
     try {
       // get contract instance
       const networkId = await web3.eth.net.getId();
+      let addressOfContract = getMeta('contractAddress');
+      console.log("Using contract address at " + addressOfContract)
+      if(!addressOfContract){
       const deployedNetwork = creatorCoinArtifact.networks[networkId];
+      addressOfContract = deployedNetwork.address;
+      }
+      console.log("Using contract address at " + addressOfContract)
       this.meta = new web3.eth.Contract(
         creatorCoinArtifact.abi,
-        0xD9e647A2c48FB031AB49C04901DAB6542e35d61b
+        addressOfContract
       );
 
       // get accounts
