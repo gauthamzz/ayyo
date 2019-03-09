@@ -1,34 +1,7 @@
+// <meta name="restrictedextras" content="add id over here" />
+
 import Web3 from "web3";
-import creatorCoinArtifact from "../../build/contracts/Creator.json";
-
-function getMeta(metaName) {
-  const metas = document.getElementsByTagName('meta');
-  for (let i = 0; i < metas.length; i++) {
-    if (metas[i].getAttribute('name') === metaName) {
-      return metas[i].getAttribute('content');
-    }
-  }
-
-  return '';
-}
-
-function addImageOnTop(element){
-  var rect = element.getBoundingClientRect();
-  var width = element.offsetWidth;
-  var height = element.offsetHeight;
-  console.log(rect.top, rect.right, rect.bottom, rect.left);
-  console.log(width,height);
-  let content = '<div id="payforviewplaceholder" style=" position:absolute;left:'+ rect.left+'px;top:'+rect.top+'px;"> \
-  <img  src="https://via.placeholder.com/'+rect.width+'x'+rect.height+'/f7f7f7/000?text=Premium+Content+Click+to+Pay" onclick="App.payContent()" style="box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);;z-index:999">\
-  </div>'
-  document.body.innerHTML = document.body.innerHTML + content;
-}
-function hide(elements) {
-  elements = elements.length ? elements : [elements];
-  for (var index = 0; index < elements.length; index++) {
-    elements[index].style.display = "none";
-  }
-}
+import creatorCoinArtifact from "../../build/contracts/CreatorFactory.json";
 
 
 const App = {
@@ -59,47 +32,57 @@ const App = {
   },
 
   refreshBalance: async function() {
-    const { balanceOf } = this.meta.methods;
-    const balance = await balanceOf(this.account).call();
+    const { getDeployedCreators } = this.meta.methods;
+    const balance = await getDeployedCreators().call();
 
     const balanceElement = document.getElementsByClassName("balance")[0];
+    console.log(balance);
+    var content = ""
+    balance.forEach(function(entry) {
+      content = content.concat('\
+      <div class="card"> \
+  <div class="card-content"> \
+    <p class="subtitle"> \
+     '+entry+'\
+    </p>\
+  </div> \
+  <footer class="card-footer">\
+    <p class="card-footer-item">\
+      <span>\
+        Add <a href="#">Paywall</a>\
+      </span>\
+    </p>\
+    <p class="card-footer-item">\
+      <span> \
+        Add <a href="#">Premium Element</a> \
+      </span> \
+      <span  id="premium"> Awesome \
+      </span> \
+    </p>\
+  </footer>\
+</div> <br>\
+     ' )})
+    
 
-    if (balance == 0) {
-      let divToHide = getMeta('restrictedextras');
-      let element = document.getElementById(divToHide);
-      addImageOnTop(element);
-
-
-    } else {
-      var paywall = document.getElementById("payforviewplaceholder");
-      if (paywall) {
-        hide(document.getElementById("payforviewplaceholder"));
-      }
-     
-    }
-    // balanceElement.innerHTML = balance;
+    balanceElement.innerHTML = content;
   },
 
-  payContent: async function() {
-    // const amount = parseInt(document.getElementById("amount").value);
-    const amount = 1;
+  createCreator: async function() {
+    const expiration = parseInt(document.getElementById("expiration").value);
+    const price = parseInt(document.getElementById("price").value);
 
-    // this.setStatus("Initiating transaction... (please wait)");
-
-    const { payContent } = this.meta.methods;
-    await payContent().send({
-      value: web3.toWei(amount, "ether"),
-      from: this.account,
-      gas: "1000000"
+    const { createCreator } = this.meta.methods;
+    await createCreator(expiration, price).send({
+      from: this.account
     });
 
-    // this.setStatus("Transaction complete!");
+    this.setStatus("Transaction complete!");
     this.refreshBalance();
   },
 
   setStatus: function(message) {
-    // const status = document.getElementById("status");
-    // status.innerHTML = message;
+    const status = document.getElementById("status");
+    status.innerHTML = message;
   }
 };
 

@@ -1,3 +1,5 @@
+// <meta name="restrictedextras" content="add id over here" />
+
 import Web3 from "web3";
 import creatorCoinArtifact from "../../build/contracts/Creator.json";
 
@@ -82,7 +84,8 @@ const App = {
 
   payContent: async function() {
     // const amount = parseInt(document.getElementById("amount").value);
-    const amount = 1;
+    const { getPrice } = this.meta.methods;
+    let amount = await getPrice().call();
 
     // this.setStatus("Initiating transaction... (please wait)");
 

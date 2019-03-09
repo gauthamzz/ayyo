@@ -4,7 +4,7 @@
     <title>ayo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
   </head>
   <style>
     input {
@@ -13,57 +13,114 @@
     }
   </style>
   <body>
-      <section class="hero is-primary">
+      <section class="hero is-info">
+          <div class="hero-head">
+            <nav class="navbar">
+              <div class="container">
+                <div class="navbar-brand">
+                  <a class="navbar-item">
+                    <img src="https://bulma.io/images/bulma-type-white.png" alt="Logo">
+                  </a>
+                  <span class="navbar-burger burger" data-target="navbarMenuHeroB">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </span>
+                </div>
+                <div id="navbarMenuHeroB" class="navbar-menu">
+                  <div class="navbar-end">
+                    <a class="navbar-item is-active">
+                      Home
+                    </a>
+                    <a class="navbar-item">
+                      Examples
+                    </a>
+                    <a class="navbar-item">
+                      Documentation
+                    </a>
+                    <span class="navbar-item">
+                      <a class="button is-info is-inverted">
+                        <span class="icon">
+                          <i class="fab fa-github"></i>
+                        </span>
+                        <span>Download</span>
+                      </a>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </div>
+        
           <div class="hero-body">
-            <div class="container">
-              <h1 class="title">
-                Primary title
-              </h1>
-              <h2 class="subtitle">
-                Primary subtitle
-              </h2>
+            <div class="container has-text-centered">
+              <p class="title">
+                Title
+              </p>
+              <p class="subtitle">
+                Subtitle
+              </p>
             </div>
           </div>
+        
+          
         </section>
-        <section >
-            <iframe width="560" height="500" id="iframe" src="https://www.youtube.com/embed/egOoEr-vFP0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <!-- <iframe width="560" height="500" id="iframe" src="https://www.youtube.com/embed/egOoEr-vFP0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-        
-          </section>
-        
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas tellus rutrum tellus pellentesque eu tincidunt tortor aliquam. Ipsum dolor sit amet consectetur adipiscing. Viverra mauris in aliquam sem fringilla ut. Ac placerat vestibulum lectus mauris ultrices eros in cursus. Dictum varius duis at consectetur. Eu tincidunt tortor aliquam nulla facilisi cras. Justo donec enim diam vulputate ut pharetra sit amet aliquam. Lacinia at quis risus sed vulputate. Id velit ut tortor pretium viverra suspendisse potenti nullam ac. Id porta nibh venenatis cras sed felis. Lacus viverra vitae congue eu. Tempor commodo ullamcorper a lacus vestibulum.
+        <section class="section">
+            <div class="container">
+                <div class="columns">
+                    <div class="column is-4" >
+                <aside class="menu">
+                        <p class="menu-label">
+                          Add new 
+                        </p>
+                        
+                        <ul class="menu-list">
+                            <div class="field">
+                                <p class="control has-icons-left has-icons-right">
+                                    <input class="input" type="email" id="expiration" placeholder="Expiration Duration">
+                                    <span class="icon is-small is-left">
+                                        🕒
+                                    </span>
+                                    <span class="icon is-small is-right">
+                                      <i class="fas fa-check"></i>
+                                    </span>
+                                  </p>
+                                  <p class="control has-icons-left has-icons-right">
+                                      <input class="input" id="price" type="email" placeholder="Price">
+                                      <span class="icon is-small is-left">
+                                          💸
+                                      </span>
+                                      <span class="icon is-small is-right">
+                                        <i class="fas fa-check"></i>
+                                      </span>
+                                    </p>
+                              </div>
+                              
+                              <div class="field">
+                                <p class="control">
+                                  <button class="button is-success"  onclick="App.createCreator()">
+                                    Create
+                                  </button>
+                                </p>
+                              </div>
+                              </div>
+                          <div id="status">
+                            
+                          </div>
+                        </ul>
+                    
+                      </aside>
+                      <div class="container">
+                        <div class="columns">
+                          <div class="column">
+                            <div class="balance"></div>
+                          </div>
+                        </div>
+                      </div>
+        </div>
 
-ACommodo viverra maecenas accumsan lacus vel. Commodo sed egestas egestas fringilla phasellus faucibus. Blandit turpis cursus in hac habitasse platea. Scelerisque felis imperdiet proin fermentum leo vel orci. Non nisi est sit amet facilisis magna etiam tempor. Aliquam nulla facilisi cras fermentum odio eu feugiat. Aliquam malesuada bibendum arcu vitae elementum curabitur. Sit amet facilisis magna etiam tempor orci eu. Turpis cursus in hac habitasse. Porttitor leo a diam sollicitudin. Ut faucibus pulvinar elementum integer enim neque volutpat ac. Eu sem integer vitae justo eget. Scelerisque eleifend donec pretium vulputate sapien nec sagittis. Et malesuada fames ac turpis egestas integer eget aliquet. Neque vitae tempus quam pellentesque nec nam.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas tellus rutrum tellus pellentesque eu tincidunt tortor aliquam. Ipsum dolor sit amet consectetur adipiscing. Viverra mauris in aliquam sem fringilla ut. Ac placerat vestibulum lectus mauris ultrices eros in cursus. Dictum varius duis at consectetur. Eu tincidunt tortor aliquam nulla facilisi cras. Justo donec enim diam vulputate ut pharetra sit amet aliquam. Lacinia at quis risus sed vulputate. Id velit ut tortor pretium viverra suspendisse potenti nullam ac. Id porta nibh venenatis cras sed felis. Lacus viverra vitae congue eu. Tempor commodo ullamcorper a lacus vestibulum.
-
-ACommodo viverra maecenas accumsan lacus vel. Commodo sed egestas egestas fringilla phasellus faucibus. Blandit turpis cursus in hac habitasse platea. Scelerisque felis imperdiet proin fermentum leo vel orci. Non nisi est sit amet facilisis magna etiam tempor. Aliquam nulla facilisi cras fermentum odio eu feugiat. Aliquam malesuada bibendum arcu vitae elementum curabitur. Sit amet facilisis magna etiam tempor orci eu. Turpis cursus in hac habitasse. Porttitor leo a diam sollicitudin. Ut faucibus pulvinar elementum integer enim neque volutpat ac. Eu sem integer vitae justo eget. Scelerisque eleifend donec pretium vulputate sapien nec sagittis. Et malesuada fames ac turpis egestas integer eget aliquet. Neque vitae tempus quam pellentesque nec nam.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas tellus rutrum tellus pellentesque eu tincidunt tortor aliquam. Ipsum dolor sit amet consectetur adipiscing. Viverra mauris in aliquam sem fringilla ut. Ac placerat vestibulum lectus mauris ultrices eros in cursus. Dictum varius duis at consectetur. Eu tincidunt tortor aliquam nulla facilisi cras. Justo donec enim diam vulputate ut pharetra sit amet aliquam. Lacinia at quis risus sed vulputate. Id velit ut tortor pretium viverra suspendisse potenti nullam ac. Id porta nibh venenatis cras sed felis. Lacus viverra vitae congue eu. Tempor commodo ullamcorper a lacus vestibulum.
-
-ACommodo viverra maecenas accumsan lacus vel. Commodo sed egestas egestas fringilla phasellus faucibus. Blandit turpis cursus in hac habitasse platea. Scelerisque felis imperdiet proin fermentum leo vel orci. Non nisi est sit amet facilisis magna etiam tempor. Aliquam nulla facilisi cras fermentum odio eu feugiat. Aliquam malesuada bibendum arcu vitae elementum curabitur. Sit amet facilisis magna etiam tempor orci eu. Turpis cursus in hac habitasse. Porttitor leo a diam sollicitudin. Ut faucibus pulvinar elementum integer enim neque volutpat ac. Eu sem integer vitae justo eget. Scelerisque eleifend donec pretium vulputate sapien nec sagittis. Et malesuada fames ac turpis egestas integer eget aliquet. Neque vitae tempus quam pellentesque nec nam.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas tellus rutrum tellus pellentesque eu tincidunt tortor aliquam. Ipsum dolor sit amet consectetur adipiscing. Viverra mauris in aliquam sem fringilla ut. Ac placerat vestibulum lectus mauris ultrices eros in cursus. Dictum varius duis at consectetur. Eu tincidunt tortor aliquam nulla facilisi cras. Justo donec enim diam vulputate ut pharetra sit amet aliquam. Lacinia at quis risus sed vulputate. Id velit ut tortor pretium viverra suspendisse potenti nullam ac. Id porta nibh venenatis cras sed felis. Lacus viverra vitae congue eu. Tempor commodo ullamcorper a lacus vestibulum.
-
-
-ACommodo viverra maecenas accumsan lacus vel. Commodo sed egestas egestas fringilla phasellus faucibus. Blandit turpis cursus in hac habitasse platea. Scelerisque felis imperdiet proin fermentum leo vel orci. Non nisi est sit amet facilisis magna etiam tempor. Aliquam nulla facilisi cras fermentum odio eu feugiat. Aliquam malesuada bibendum arcu vitae elementum curabitur. Sit amet facilisis magna etiam tempor orci eu. Turpis cursus in hac habitasse. Porttitor leo a diam sollicitudin. Ut faucibus pulvinar elementum integer enim neque volutpat ac. Eu sem integer vitae justo eget. Scelerisque eleifend donec pretium vulputate sapien nec sagittis. Et malesuada fames ac turpis egestas integer eget aliquet. Neque vitae tempus quam pellentesque nec nam.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas tellus rutrum tellus pellentesque eu tincidunt tortor aliquam. Ipsum dolor sit amet consectetur adipiscing. Viverra mauris in aliquam sem fringilla ut. Ac placerat vestibulum lectus mauris ultrices eros in cursus. Dictum varius duis at consectetur. Eu tincidunt tortor aliquam nulla facilisi cras. Justo donec enim diam vulputate ut pharetra sit amet aliquam. Lacinia at quis risus sed vulputate. Id velit ut tortor pretium viverra suspendisse potenti nullam ac. Id porta nibh venenatis cras sed felis. Lacus viverra vitae congue eu. Tempor commodo ullamcorper a lacus vestibulum.
-
-ACommodo viverra maecenas accumsan lacus vel. Commodo sed egestas egestas fringilla phasellus faucibus. Blandit turpis cursus in hac habitasse platea. Scelerisque felis imperdiet proin fermentum leo vel orci. Non nisi est sit amet facilisis magna etiam tempor. Aliquam nulla facilisi cras fermentum odio eu feugiat. Aliquam malesuada bibendum arcu vitae elementum curabitur. Sit amet facilisis magna etiam tempor orci eu. Turpis cursus in hac habitasse. Porttitor leo a diam sollicitudin. Ut faucibus pulvinar elementum integer enim neque volutpat ac. Eu sem integer vitae justo eget. Scelerisque eleifend donec pretium vulputate sapien nec sagittis. Et malesuada fames ac turpis egestas integer eget aliquet. Neque vitae tempus quam pellentesque nec nam.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas tellus rutrum tellus pellentesque eu tincidunt tortor aliquam. Ipsum dolor sit amet consectetur adipiscing. Viverra mauris in aliquam sem fringilla ut. Ac placerat vestibulum lectus mauris ultrices eros in cursus. Dictum varius duis at consectetur. Eu tincidunt tortor aliquam nulla facilisi cras. Justo donec enim diam vulputate ut pharetra sit amet aliquam. Lacinia at quis risus sed vulputate. Id velit ut tortor pretium viverra suspendisse potenti nullam ac. Id porta nibh venenatis cras sed felis. Lacus viverra vitae congue eu. Tempor commodo ullamcorper a lacus vestibulum.
-
-ACommodo viverra maecenas accumsan lacus vel. Commodo sed egestas egestas fringilla phasellus faucibus. Blandit turpis cursus in hac habitasse platea. Scelerisque felis imperdiet proin fermentum leo vel orci. Non nisi est sit amet facilisis magna etiam tempor. Aliquam nulla facilisi cras fermentum odio eu feugiat. Aliquam malesuada bibendum arcu vitae elementum curabitur. Sit amet facilisis magna etiam tempor orci eu. Turpis cursus in hac habitasse. Porttitor leo a diam sollicitudin. Ut faucibus pulvinar elementum integer enim neque volutpat ac. Eu sem integer vitae justo eget. Scelerisque eleifend donec pretium vulputate sapien nec sagittis. Et malesuada fames ac turpis egestas integer eget aliquet. Neque vitae tempus quam pellentesque nec nam.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas tellus rutrum tellus pellentesque eu tincidunt tortor aliquam. Ipsum dolor sit amet consectetur adipiscing. Viverra mauris in aliquam sem fringilla ut. Ac placerat vestibulum lectus mauris ultrices eros in cursus. Dictum varius duis at consectetur. Eu tincidunt tortor aliquam nulla facilisi cras. Justo donec enim diam vulputate ut pharetra sit amet aliquam. Lacinia at quis risus sed vulputate. Id velit ut tortor pretium viverra suspendisse potenti nullam ac. Id porta nibh venenatis cras sed felis. Lacus viverra vitae congue eu. Tempor commodo ullamcorper a lacus vestibulum.
-
-ACommodo viverra maecenas accumsan lacus vel. Commodo sed egestas egestas fringilla phasellus faucibus. Blandit turpis cursus in hac habitasse platea. Scelerisque felis imperdiet proin fermentum leo vel orci. Non nisi est sit amet facilisis magna etiam tempor. Aliquam nulla facilisi cras fermentum odio eu feugiat. Aliquam malesuada bibendum arcu vitae elementum curabitur. Sit amet facilisis magna etiam tempor orci eu. Turpis cursus in hac habitasse. Porttitor leo a diam sollicitudin. Ut faucibus pulvinar elementum integer enim neque volutpat ac. Eu sem integer vitae justo eget. Scelerisque eleifend donec pretium vulputate sapien nec sagittis. Et malesuada fames ac turpis egestas integer eget aliquet. Neque vitae tempus quam pellentesque nec nam.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas tellus rutrum tellus pellentesque eu tincidunt tortor aliquam. Ipsum dolor sit amet consectetur adipiscing. Viverra mauris in aliquam sem fringilla ut. Ac placerat vestibulum lectus mauris ultrices eros in cursus. Dictum varius duis at consectetur. Eu tincidunt tortor aliquam nulla facilisi cras. Justo donec enim diam vulputate ut pharetra sit amet aliquam. Lacinia at quis risus sed vulputate. Id velit ut tortor pretium viverra suspendisse potenti nullam ac. Id porta nibh venenatis cras sed felis. Lacus viverra vitae congue eu. Tempor commodo ullamcorper a lacus vestibulum.
-
-ACommodo viverra maecenas accumsan lacus vel. Commodo sed egestas egestas fringilla phasellus faucibus. Blandit turpis cursus in hac habitasse platea. Scelerisque felis imperdiet proin fermentum leo vel orci. Non nisi est sit amet facilisis magna etiam tempor. Aliquam nulla facilisi cras fermentum odio eu feugiat. Aliquam malesuada bibendum arcu vitae elementum curabitur. Sit amet facilisis magna etiam tempor orci eu. Turpis cursus in hac habitasse. Porttitor leo a diam sollicitudin. Ut faucibus pulvinar elementum integer enim neque volutpat ac. Eu sem integer vitae justo eget. Scelerisque eleifend donec pretium vulputate sapien nec sagittis. Et malesuada fames ac turpis egestas integer eget aliquet. Neque vitae tempus quam pellentesque nec nam.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas tellus rutrum tellus pellentesque eu tincidunt tortor aliquam. Ipsum dolor sit amet consectetur adipiscing. Viverra mauris in aliquam sem fringilla ut. Ac placerat vestibulum lectus mauris ultrices eros in cursus. Dictum varius duis at consectetur. Eu tincidunt tortor aliquam nulla facilisi cras. Justo donec enim diam vulputate ut pharetra sit amet aliquam. Lacinia at quis risus sed vulputate. Id velit ut tortor pretium viverra suspendisse potenti nullam ac. Id porta nibh venenatis cras sed felis. Lacus viverra vitae congue eu. Tempor commodo ullamcorper a lacus vestibulum.
-
-ACommodo viverra maecenas accumsan lacus vel. Commodo sed egestas egestas fringilla phasellus faucibus. Blandit turpis cursus in hac habitasse platea. Scelerisque felis imperdiet proin fermentum leo vel orci. Non nisi est sit amet facilisis magna etiam tempor. Aliquam nulla facilisi cras fermentum odio eu feugiat. Aliquam malesuada bibendum arcu vitae elementum curabitur. Sit amet facilisis magna etiam tempor orci eu. Turpis cursus in hac habitasse. Porttitor leo a diam sollicitudin. Ut faucibus pulvinar elementum integer enim neque volutpat ac. Eu sem integer vitae justo eget. Scelerisque eleifend donec pretium vulputate sapien nec sagittis. Et malesuada fames ac turpis egestas integer eget aliquet. Neque vitae tempus quam pellentesque nec nam.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas tellus rutrum tellus pellentesque eu tincidunt tortor aliquam. Ipsum dolor sit amet consectetur adipiscing. Viverra mauris in aliquam sem fringilla ut. Ac placerat vestibulum lectus mauris ultrices eros in cursus. Dictum varius duis at consectetur. Eu tincidunt tortor aliquam nulla facilisi cras. Justo donec enim diam vulputate ut pharetra sit amet aliquam. Lacinia at quis risus sed vulputate. Id velit ut tortor pretium viverra suspendisse potenti nullam ac. Id porta nibh venenatis cras sed felis. Lacus viverra vitae congue eu. Tempor commodo ullamcorper a lacus vestibulum.
-
-ACommodo viverra maecenas accumsan lacus vel. Commodo sed egestas egestas fringilla phasellus faucibus. Blandit turpis cursus in hac habitasse platea. Scelerisque felis imperdiet proin fermentum leo vel orci. Non nisi est sit amet facilisis magna etiam tempor. Aliquam nulla facilisi cras fermentum odio eu feugiat. Aliquam malesuada bibendum arcu vitae elementum curabitur. Sit amet facilisis magna etiam tempor orci eu. Turpis cursus in hac habitasse. Porttitor leo a diam sollicitudin. Ut faucibus pulvinar elementum integer enim neque volutpat ac. Eu sem integer vitae justo eget. Scelerisque eleifend donec pretium vulputate sapien nec sagittis. Et malesuada fames ac turpis egestas integer eget aliquet. Neque vitae tempus quam pellentesque nec nam.
-    
-
+  </div>
+</section>
 <script src="index.js"></script>
   </body>
 </html>

@@ -1,8 +1,7 @@
 // basic version to be included 
-// <meta name="restrictedextras" content="add id over here" />
 import Web3 from "web3";
 import creatorCoinArtifact from "../../build/contracts/Creator.json";
-<meta name="restrictedextras" content="iframe" />
+
 function hide(elements) {
   elements = elements.length ? elements : [elements];
   for (var index = 0; index < elements.length; index++) {
@@ -59,18 +58,18 @@ function addRow() {
   document.body.innerHTML = document.body.innerHTML + content;
 
 
-//   var cssId = 'bulma';  // you could encode the css path itself to generate id..
-// if (!document.getElementById(cssId))
-// {
-//     var head  = document.getElementsByTagName('head')[0];
-//     var link  = document.createElement('link');
-//     link.id   = cssId;
-//     link.rel  = 'stylesheet';
-//     link.type = 'text/css';
-//     link.href = 'https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css';
-//     link.media = 'all';
-//     head.appendChild(link);
-// }
+  var cssId = 'bulma';  // you could encode the css path itself to generate id..
+if (!document.getElementById(cssId))
+{
+    var head  = document.getElementsByTagName('head')[0];
+    var link  = document.createElement('link');
+    link.id   = cssId;
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css';
+    link.media = 'all';
+    head.appendChild(link);
+}
 }
 
 const App = {
@@ -93,11 +92,12 @@ const App = {
       // get accounts
       const accounts = await web3.eth.getAccounts();
       this.account = accounts[0];
-
       this.refreshBalance();
     } catch (error) {
       console.error("Could not connect to contract or chain.");
     }
+   
+
   },
 
   refreshBalance: async function() {
@@ -107,11 +107,6 @@ const App = {
     const balanceElement = document.getElementsByClassName("balance")[0];
 
     if (balance == 0) {
-      // document.body.style.backgroundColor = "#ffafaf";
-      // document.body.style.overflow = "hidden";
-      // document.body.style.margin = "0";
-      // document.body.style.height = "100%";
-      // document.body.style.overflowY = "hidden";
       document.getElementsByTagName("html")[0].style.overflow = "hidden";
       addRow();
     } else {
@@ -126,10 +121,10 @@ const App = {
     }
     // balanceElement.innerHTML = balance;
   },
-
   payContent: async function() {
     // const amount = parseInt(document.getElementById("amount").value);
-    const amount = 1;
+    const { getPrice } = this.meta.methods;
+    let amount = await getPrice().call();
 
     // this.setStatus("Initiating transaction... (please wait)");
 
@@ -139,6 +134,7 @@ const App = {
       from: this.account,
       gas: "1000000"
     });
+
 
     // this.setStatus("Transaction complete!");
     this.refreshBalance();
