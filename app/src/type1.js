@@ -86,7 +86,7 @@ const App = {
       const deployedNetwork = creatorCoinArtifact.networks[networkId];
       this.meta = new web3.eth.Contract(
         creatorCoinArtifact.abi,
-        deployedNetwork.address
+        0xD9e647A2c48FB031AB49C04901DAB6542e35d61b
       );
 
       // get accounts
