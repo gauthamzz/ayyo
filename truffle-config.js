@@ -22,11 +22,14 @@
  *
  */
 
-// const HDWallet = require('truffle-hdwallet-provider');
+const HDWalletProvider = require('truffle-hdwallet-provider');
 // const infuraKey = "fj4jll3k.....";
 //
-// const fs = require('fs');
-// const mnemonic = fs.readFileSync(".secret").toString().trim();
+const fs = require('fs');
+const mnemonic = fs.readFileSync(".secret").toString().trim();
+
+let PrivateKeyProvider = require("truffle-privatekey-provider");
+let privateKey = "FC7CFC1B9DD8C393880A386A10DAA16BBB5A46F7972B6C3867E958BBEFFF17E3";
 
 module.exports = {
   /**
@@ -51,6 +54,17 @@ module.exports = {
      port: 8545,            // Standard Ethereum port (default: none)
      network_id: "*",       // Any network (default: none)
     },
+    skale: {
+      provider: new HDWalletProvider(mnemonic, "http://104.248.242.131:8014/"),
+      gasPrice: 0,
+      network_id: "*"
+  },
+  private_key: {
+      provider: new PrivateKeyProvider(privateKey, "http://104.248.242.131:8014/"),
+      gasPrice: 0,
+      gas: 8000000,
+      network_id: "*"
+  },
 
     // Another network with more advanced options...
     // advanced: {

@@ -94,11 +94,11 @@ const App = {
     try {
       // get contract instance
       const networkId = await web3.eth.net.getId();
-      const deployedNetwork = creatorCoinArtifact.networks[networkId];
       let addressOfContract = getMeta('contractAddress');
       console.log("Using contract address at " + addressOfContract)
       if(!addressOfContract){
-        addressOfContract = deployedNetwork.address;
+      const deployedNetwork = creatorCoinArtifact.networks[networkId];
+      addressOfContract = deployedNetwork.address;
       }
       this.meta = new web3.eth.Contract(
         creatorCoinArtifact.abi,
@@ -122,7 +122,7 @@ const App = {
 
     const balanceElement = document.getElementsByClassName("balance")[0];
 
-    if (balance == 0) {
+    if (balance == 2) {
       document.getElementsByTagName("html")[0].style.overflow = "hidden";
       addRow();
     } else {
