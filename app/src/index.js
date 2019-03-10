@@ -1,4 +1,5 @@
-// basic version to be included 
+// <meta name="restrictedextras" content="add id over here" />
+
 import Web3 from "web3";
 import creatorCoinArtifact from "../../build/contracts/Creator.json";
 
@@ -13,6 +14,17 @@ function getMeta(metaName) {
   return '';
 }
 
+function addImageOnTop(element){
+  var rect = element.getBoundingClientRect();
+  var width = element.offsetWidth;
+  var height = element.offsetHeight;
+  console.log(rect.top, rect.right, rect.bottom, rect.left);
+  console.log(width,height);
+  let content = '<div id="payforviewplaceholder" style=" position:absolute;left:'+ rect.left+'px;top:'+rect.top+'px;"> \
+  <img  src="https://via.placeholder.com/'+rect.width+'x'+rect.height+'/f7f7f7/000?text=Premium+Content+Click+to+Pay" onclick="App.payContent()" style="box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);;z-index:999">\
+  </div>'
+  document.body.innerHTML = document.body.innerHTML + content;
+}
 function hide(elements) {
   elements = elements.length ? elements : [elements];
   for (var index = 0; index < elements.length; index++) {
@@ -20,68 +32,6 @@ function hide(elements) {
   }
 }
 
-function addRow() {
-  let content = ' <div id ="paywall"  > \
-  <div class="card" style="position:absolute; bottom:0;z-index: 200;width: 90%;left: 50%;transform: translate(-50%, -10%);box-shadow: 0px 4px 72px rgba(0, 0, 0, 0.25);"> \
-    <div class="card-content" > \
-        <div class="media"> \
-          <div class="media-left"> \
-            <figure class="image is-128x128"> \
-              <img src="https://i.ibb.co/BPNLV54/07.png" alt="Placeholder image"> \
-            </figure> \
-          </div> \
-          <div class="media-content has-text-centered"> \
-            <div class="columns"> \
-              <div class="column is-four-fifths"> \
-                <div class="title" > \
-                    Buy premium content! \
-                </div> \
-                <div class="subtitle"> \
-                  Become a member now for $5/month to read this story and get unlimited access to all of the best stories on this website. \
-                </div> \
-              </div> \
-              <div class="column"> \
-                  <div class="button is-large is-primary"  onclick="App.payContent()"> \
-                    Buy Now  \
-                  </div> \
-              </div> \
-            </div> \
-          </div> \
-        </div> \
-        </div> \
-</div> \
-  </div>'
-  
-  // let content =
-  //   ' <div id="paywall card"\
-  // <h1>ayo</h1> \
-  // <p>You have <strong class="balance">loading...</strong> Ayo</p> <h1>Send MetaCoin</h1> \
-  // <label for="amount">Amount:</label> \
-  // <input type="text" id="amount" placeholder="e.g. 95" /> \
-  // <button class="button" onclick="App.payContent()">Make Creator Token</button> \
-  // <p id="status"></p> \
-  // <p> \
-  //   <strong>Hint:</strong> open the browser developer console to view any \
-  //   errors and warnings. \
-  // </p> \
-  // </div>  \
-  // ';
-  document.body.innerHTML = document.body.innerHTML + content;
-
-
-  var cssId = 'bulma';  // you could encode the css path itself to generate id..
-if (!document.getElementById(cssId))
-{
-    var head  = document.getElementsByTagName('head')[0];
-    var link  = document.createElement('link');
-    link.id   = cssId;
-    link.rel  = 'stylesheet';
-    link.type = 'text/css';
-    link.href = 'https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css';
-    link.media = 'all';
-    head.appendChild(link);
-}
-}
 
 const App = {
   web3: null,
@@ -109,39 +59,45 @@ const App = {
       // get accounts
       const accounts = await web3.eth.getAccounts();
       this.account = accounts[0];
+
       this.refreshBalance();
     } catch (error) {
       console.error("Could not connect to contract or chain.");
     }
-   
-
   },
 
   refreshBalance: async function() {
     const { balanceOf } = this.meta.methods;
     const balance = await balanceOf(this.account).call();
+    console.log("balance is" + balance)
 
     const balanceElement = document.getElementsByClassName("balance")[0];
 
-    if (balance == 1) {
-      document.getElementsByTagName("html")[0].style.overflow = "hidden";
-      addRow();
-    } else {
-      var paywall = document.getElementById("paywall");
-      if (paywall) {
-        hide(document.getElementById("paywall"));
-      }
+    if (balance == 3) {
+      let divToHide = getMeta('restrictedextras');
+      let element = document.getElementById(divToHide);
+      addImageOnTop(element);
 
-      // document.body.style.backgroundColor = "lightgreen";
-      document.body.style.overflowY = "";
-      document.getElementsByTagName("html")[0].style.overflow = "";
+
+    } else {
+      var paywall = document.getElementById("payforviewplaceholder");
+      if (paywall) {
+        hide(document.getElementById("payforviewplaceholder"));
+      }
+     
     }
     // balanceElement.innerHTML = balance;
   },
+
   payContent: async function() {
     // const amount = parseInt(document.getElementById("amount").value);
     const { getPrice } = this.meta.methods;
     let amount = await getPrice().call();
+    const { getLength } = this.meta.methods;
+    let lengthOfTokens = await getLength().call();
+    
+    amount = parseInt(amount) + parseFloat(0.001*lengthOfTokens);
+    console.log(amount)
 
     // this.setStatus("Initiating transaction... (please wait)");
 
@@ -151,7 +107,6 @@ const App = {
       from: this.account,
       gas: "1000000"
     });
-
 
     // this.setStatus("Transaction complete!");
     this.refreshBalance();

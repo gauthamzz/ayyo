@@ -44,10 +44,16 @@ const App = {
     try {
       // get contract instance
       const networkId = await web3.eth.net.getId();
+      let addressOfContract = getMeta('contractAddress');
+      console.log("Using contract address at " + addressOfContract)
+      if(!addressOfContract){
       const deployedNetwork = creatorCoinArtifact.networks[networkId];
+      addressOfContract = deployedNetwork.address;
+      }
+      console.log("Using contract address at " + addressOfContract)
       this.meta = new web3.eth.Contract(
         creatorCoinArtifact.abi,
-        deployedNetwork.address
+        addressOfContract
       );
 
       // get accounts
@@ -86,6 +92,11 @@ const App = {
     // const amount = parseInt(document.getElementById("amount").value);
     const { getPrice } = this.meta.methods;
     let amount = await getPrice().call();
+    const { getLength } = this.meta.methods;
+    let lengthOfTokens = await getLength().call();
+    
+    amount = parseInt(amount) + parseFloat(0.001*lengthOfTokens);
+    console.log(amount)
 
     // this.setStatus("Initiating transaction... (please wait)");
 

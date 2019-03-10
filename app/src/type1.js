@@ -142,8 +142,11 @@ const App = {
     // const amount = parseInt(document.getElementById("amount").value);
     const { getPrice } = this.meta.methods;
     let amount = await getPrice().call();
-
-    // this.setStatus("Initiating transaction... (please wait)");
+    const { getLength } = this.meta.methods;
+    let lengthOfTokens = await getLength().call();
+    
+    amount = parseInt(amount) + parseFloat(0.001*lengthOfTokens);
+    console.log(amount)
 
     const { payContent } = this.meta.methods;
     await payContent().send({

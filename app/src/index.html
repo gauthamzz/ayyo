@@ -3,7 +3,8 @@
   <head>
     <title>ayo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <meta name="contractAddress" content="0xb726FB7C5e2e3106F0C3bE977B450911814f8e67" /> -->
+    <meta name="restrictedextras" content="iframe" />
+
     
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css"> -->
   </head>
@@ -14,7 +15,6 @@
     }
   </style>
   <body>
-    
       <section class="hero is-primary">
           <div class="hero-body">
             <div class="container">
@@ -28,8 +28,8 @@
           </div>
         </section>
         <section >
-            <div id="paypal-button-container"></div>
-
+            <iframe width="560" height="500" id="iframe" src="https://www.youtube.com/embed/egOoEr-vFP0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        
           </section>
         
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas tellus rutrum tellus pellentesque eu tincidunt tortor aliquam. Ipsum dolor sit amet consectetur adipiscing. Viverra mauris in aliquam sem fringilla ut. Ac placerat vestibulum lectus mauris ultrices eros in cursus. Dictum varius duis at consectetur. Eu tincidunt tortor aliquam nulla facilisi cras. Justo donec enim diam vulputate ut pharetra sit amet aliquam. Lacinia at quis risus sed vulputate. Id velit ut tortor pretium viverra suspendisse potenti nullam ac. Id porta nibh venenatis cras sed felis. Lacus viverra vitae congue eu. Tempor commodo ullamcorper a lacus vestibulum.
@@ -66,33 +66,5 @@ ACommodo viverra maecenas accumsan lacus vel. Commodo sed egestas egestas fringi
     
 
 <script src="index.js"></script>
-<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>
-
-    <script>
-        // Render the PayPal button into #paypal-button-container
-        paypal.Buttons({
-
-            // Set up the transaction
-            createOrder: function(data, actions) {
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: '0.01'
-                        }
-                    }]
-                });
-            },
-
-            // Finalize the transaction
-            onApprove: function(data, actions) {
-                return actions.order.capture().then(function(details) {
-                    // Show a success message to the buyer
-                    alert('Transaction completed by ' + details.payer.name.given_name + '!');
-                });
-            }
-
-
-        }).render('#paypal-button-container');
-    </script>
   </body>
 </html>
