@@ -7,7 +7,6 @@ export function displayPaywallCode(){
   document.getElementById("paywall").style.display = "none";
 }
 
-
 const App = {
   web3: null,
   account: null,
@@ -19,6 +18,8 @@ const App = {
     try {
       // get contract instance
       const networkId = await web3.eth.net.getId();
+      // const networkType = web3.currentProvider.connection._url;
+      // console.log(networkType)
       const deployedNetwork = creatorCoinArtifact.networks[networkId];
       this.meta = new web3.eth.Contract(
         creatorCoinArtifact.abi,
@@ -50,9 +51,10 @@ const App = {
      '+entry+'\
     </p>\
   </div> <hr> \
-  Add paywall \
+  <p>To add paywall copy paste this code in your HTML file </p><div class="box"> \
+  <xmp id="paywallcode" style="" class="is-family-code is-size-7"> <meta name="contractAddress" content="'+ entry+'" />  </xmp> \
      <xmp id="paywallcode" style="" class="is-family-code is-size-7"> <script src="https://raw.githubusercontent.com/gauthamzz/ayyo/master/serve/paywall.js"></script> </xmp> \
-    <hr>Add Premium Content \
+    </div>  <hr>Add Premium Content \
      <xmp class="is-family-code is-size-7"> \
       <meta name="restrictedextras" content="id of content you want to hide" />  </xmp> \
       <xmp class="is-family-code is-size-7"> <script src="https://raw.githubusercontent.com/gauthamzz/ayyo/master/serve/hide.js"></script> \
@@ -69,11 +71,19 @@ const App = {
     const price = parseInt(document.getElementById("price").value);
 
     const { createCreator } = this.meta.methods;
+   
+    // skale 
     await createCreator(expiration, price).send({
-      from: this.account
+      from: this.account,
+      gas: 8000000
     });
 
-    this.setStatus("Transaction complete!");
+    // // localhost
+    // await createCreator(expiration, price).send({
+    //   from: this.account
+    // });
+
+    // this.setStatus("Transaction complete!");
     this.refreshBalance();
   },
 

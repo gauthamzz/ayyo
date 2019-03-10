@@ -1,12 +1,87 @@
-// <meta name="restrictedextras" content="add id over here" />
-
+// basic version to be included 
 import Web3 from "web3";
-import creatorCoinArtifact from "../../build/contracts/CreatorFactory.json";
-export function displayPaywallCode(){
-  document.getElementById("paywallcode").style.display = "block";
-  document.getElementById("paywall").style.display = "none";
+import creatorCoinArtifact from "../../build/contracts/Creator.json";
+
+function getMeta(metaName) {
+  const metas = document.getElementsByTagName('meta');
+  for (let i = 0; i < metas.length; i++) {
+    if (metas[i].getAttribute('name') === metaName) {
+      return metas[i].getAttribute('content');
+    }
+  }
+
+  return '';
 }
 
+function hide(elements) {
+  elements = elements.length ? elements : [elements];
+  for (var index = 0; index < elements.length; index++) {
+    elements[index].style.display = "none";
+  }
+}
+
+function addRow() {
+  let content = ' <div id ="paywall"  > \
+  <div class="card" style="position:absolute; bottom:0;z-index: 200;width: 90%;left: 50%;transform: translate(-50%, -10%);box-shadow: 0px 4px 72px rgba(0, 0, 0, 0.25);"> \
+    <div class="card-content" > \
+        <div class="media"> \
+          <div class="media-left"> \
+            <figure class="image is-128x128"> \
+              <img src="https://i.ibb.co/BPNLV54/07.png" alt="Placeholder image"> \
+            </figure> \
+          </div> \
+          <div class="media-content has-text-centered"> \
+            <div class="columns"> \
+              <div class="column is-four-fifths"> \
+                <div class="title" > \
+                    Buy premium content! \
+                </div> \
+                <div class="subtitle"> \
+                  Become a member now for $5/month to read this story and get unlimited access to all of the best stories on this website. \
+                </div> \
+              </div> \
+              <div class="column"> \
+                  <div class="button is-large is-primary"  onclick="App.payContent()"> \
+                    Buy Now  \
+                  </div> \
+              </div> \
+            </div> \
+          </div> \
+        </div> \
+        </div> \
+</div> \
+  </div>'
+  
+  // let content =
+  //   ' <div id="paywall card"\
+  // <h1>ayo</h1> \
+  // <p>You have <strong class="balance">loading...</strong> Ayo</p> <h1>Send MetaCoin</h1> \
+  // <label for="amount">Amount:</label> \
+  // <input type="text" id="amount" placeholder="e.g. 95" /> \
+  // <button class="button" onclick="App.payContent()">Make Creator Token</button> \
+  // <p id="status"></p> \
+  // <p> \
+  //   <strong>Hint:</strong> open the browser developer console to view any \
+  //   errors and warnings. \
+  // </p> \
+  // </div>  \
+  // ';
+  document.body.innerHTML = document.body.innerHTML + content;
+
+
+  var cssId = 'bulma';  // you could encode the css path itself to generate id..
+if (!document.getElementById(cssId))
+{
+    var head  = document.getElementsByTagName('head')[0];
+    var link  = document.createElement('link');
+    link.id   = cssId;
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css';
+    link.media = 'all';
+    head.appendChild(link);
+}
+}
 
 const App = {
   web3: null,
@@ -19,78 +94,72 @@ const App = {
     try {
       // get contract instance
       const networkId = await web3.eth.net.getId();
-      // const networkType = web3.currentProvider.connection._url;
-      // console.log(networkType)
+      let addressOfContract = getMeta('contractAddress');
+      console.log("Using contract address at " + addressOfContract)
+      if(!addressOfContract){
       const deployedNetwork = creatorCoinArtifact.networks[networkId];
+      addressOfContract = deployedNetwork.address;
+      }
+      console.log("Using contract address at " + addressOfContract)
       this.meta = new web3.eth.Contract(
         creatorCoinArtifact.abi,
-        deployedNetwork.address
+        addressOfContract
       );
 
       // get accounts
       const accounts = await web3.eth.getAccounts();
       this.account = accounts[0];
-
       this.refreshBalance();
     } catch (error) {
       console.error("Could not connect to contract or chain.");
     }
+   
+
   },
 
   refreshBalance: async function() {
-    const { getDeployedCreators } = this.meta.methods;
-    const balance = await getDeployedCreators().call();
+    const { balanceOf } = this.meta.methods;
+    const balance = await balanceOf(this.account).call();
 
     const balanceElement = document.getElementsByClassName("balance")[0];
-    console.log(balance);
-    var content = ""
-    balance.forEach(function(entry) {
-      content = content.concat('\
-      <div class="card"> \
-  <div class="card-content has-text-centered"> \
-    <p class="subtitle"> \
-     '+entry+'\
-    </p>\
-  </div> <hr> \
-  <p>To add paywall copy paste this code in your HTML file </p><div class="box"> \
-  <xmp id="paywallcode" style="" class="is-family-code is-size-7"> <meta name="contractAddress" content="'+ entry+'" />  </xmp> \
-     <xmp id="paywallcode" style="" class="is-family-code is-size-7"> <script src="https://raw.githubusercontent.com/gauthamzz/ayyo/master/serve/paywall.js"></script> </xmp> \
-    </div>  <hr>Add Premium Content \
-     <xmp class="is-family-code is-size-7"> \
-      <meta name="restrictedextras" content="id of content you want to hide" />  </xmp> \
-      <xmp class="is-family-code is-size-7"> <script src="https://raw.githubusercontent.com/gauthamzz/ayyo/master/serve/hide.js"></script> \
-      </xmp> \
-</div> <br>\
-     ' )})
-    
 
-    balanceElement.innerHTML = content;
+    if (balance == 1) {
+      document.getElementsByTagName("html")[0].style.overflow = "hidden";
+      addRow();
+    } else {
+      var paywall = document.getElementById("paywall");
+      if (paywall) {
+        hide(document.getElementById("paywall"));
+      }
+
+      // document.body.style.backgroundColor = "lightgreen";
+      document.body.style.overflowY = "";
+      document.getElementsByTagName("html")[0].style.overflow = "";
+    }
+    // balanceElement.innerHTML = balance;
   },
+  payContent: async function() {
+    // const amount = parseInt(document.getElementById("amount").value);
+    const { getPrice } = this.meta.methods;
+    let amount = await getPrice().call();
 
-  createCreator: async function() {
-    const expiration = parseInt(document.getElementById("expiration").value);
-    const price = parseInt(document.getElementById("price").value);
+    // this.setStatus("Initiating transaction... (please wait)");
 
-    const { createCreator } = this.meta.methods;
-   
-    // skale 
-    await createCreator(expiration, price).send({
+    const { payContent } = this.meta.methods;
+    await payContent().send({
+      value: web3.toWei(amount, "ether"),
       from: this.account,
-      gas: 8000000
+      gas: "1000000"
     });
 
-    // // localhost
-    // await createCreator(expiration, price).send({
-    //   from: this.account
-    // });
 
     // this.setStatus("Transaction complete!");
     this.refreshBalance();
   },
 
   setStatus: function(message) {
-    const status = document.getElementById("status");
-    status.innerHTML = message;
+    // const status = document.getElementById("status");
+    // status.innerHTML = message;
   }
 };
 
