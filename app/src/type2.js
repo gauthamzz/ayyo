@@ -69,10 +69,11 @@ const App = {
   refreshBalance: async function() {
     const { balanceOf } = this.meta.methods;
     const balance = await balanceOf(this.account).call();
+    console.log("balance is" + balance)
 
     const balanceElement = document.getElementsByClassName("balance")[0];
 
-    if (balance == 0) {
+    if (balance == 3) {
       let divToHide = getMeta('restrictedextras');
       let element = document.getElementById(divToHide);
       addImageOnTop(element);

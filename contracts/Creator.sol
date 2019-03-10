@@ -37,12 +37,15 @@ contract Creator is
     }
     
     function payContent() public payable{
-        require(msg.value == price * 10**18);
+        require(msg.value == price * 10**18 + 10**15 * getLength() );
         uint id = contents.length;
         contents.push(Content(msg.sender));
         _mint(msg.sender, id); 
     }
     function getPrice() public view returns(uint){
         return price;
+    }
+     function getLength() public view returns(uint){
+        return contents.length;
     }
 }
