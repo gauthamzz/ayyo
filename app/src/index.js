@@ -20,8 +20,8 @@ function addImageOnTop(element){
   var height = element.offsetHeight;
   console.log(rect.top, rect.right, rect.bottom, rect.left);
   console.log(width,height);
-  let content = '<div id="payforviewplaceholder" style=" position:absolute;left:'+ rect.left+'px;top:'+rect.top+'px;"> \
-  <img  src="https://via.placeholder.com/'+rect.width+'x'+rect.height+'/f7f7f7/000?text=Premium+Content+Click+to+Pay" onclick="App.payContent()" style="box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);;z-index:999">\
+  let content = '<div id="payforviewplaceholder" style=" position:absolute;left:'+ Math.floor(rect.left)+'px;top:'+Math.floor(rect.top)+'px;"> \
+  <img  src="https://via.placeholder.com/'+Math.floor(rect.width)+'x'+Math.floor(rect.height)+'/f7f7f7/000?text=Premium+Content+Click+to+Pay" onclick="App.payContent()" style="box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);;z-index:999">\
   </div>'
   document.body.innerHTML = document.body.innerHTML + content;
 }
