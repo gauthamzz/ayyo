@@ -73,7 +73,7 @@ const App = {
 
     const balanceElement = document.getElementsByClassName("balance")[0];
 
-    if (balance == 3) {
+    if (balance == 0) {
       let divToHide = getMeta('restrictedextras');
       let element = document.getElementById(divToHide);
       addImageOnTop(element);
