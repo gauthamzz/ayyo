@@ -51,14 +51,14 @@ const App = {
      '+entry+'\
     </p>\
   </div> <hr> \
-  <p class=" has-text-centered is-size-4">To add paywall copy paste this code in your HTML file </p><div class="box" style="margin:3%"> \
+  <p>To add paywall copy paste this code in your HTML file </p><div class="box"> \
   <xmp id="paywallcode" style="" class="is-family-code is-size-7"> <meta name="contractAddress" content="'+ entry+'" />  </xmp> \
-     <xmp id="paywallcode" style="" class="is-family-code is-size-7"> <script src="https://raw.githubusercontent.com/gauthamzz/ayyo/master/serve/paywall.js"></script> </xmp> \
-    </div>  <hr> <p class="is-size-4 has-text-centered">Add Premium Content </p>\
-    <div class="box" style="margin:3%"> <xmp class="is-family-code is-size-7"> \
+ <xmp id="paywallcode" style="" class="is-family-code is-size-7">  <script src="https://cdn.jsdelivr.net/gh/gauthamzz/ayyo@master/serve/paywall.js"></script></xmp> \
+    </div>  <hr>Add Premium Content \
+     <xmp class="is-family-code is-size-7"> \
       <meta name="restrictedextras" content="id of content you want to hide" />  </xmp> \
-      <xmp class="is-family-code is-size-7"> <script src="https://raw.githubusercontent.com/gauthamzz/ayyo/master/serve/hide.js"></script> \
-      </xmp> </div>\
+ </script> <xmp class="is-family-code is-size-7">  <script src="https://cdn.jsdelivr.net/gh/gauthamzz/ayyo@master/serve/hide.js"></script>\
+      </xmp> \
 </div> <br>\
      ' )})
     
